@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="techlebModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bids_customer">
+          <Key>
+            <PropertyRef Name="bid_id" />
+          </Key>
+          <Property Name="bid_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="t_id" Type="int" Nullable="false" />
+          <Property Name="job_id" Type="int" Nullable="false" />
+          <Property Name="bid_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="bid_is_starred" Type="smallint" Nullable="false" />
+          <Property Name="bid_date" Type="date" Nullable="false" />
+          <Property Name="bid_time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="job_id" />
+          </Key>
+          <Property Name="job_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="phone_id" Type="int" Nullable="false" />
+          <Property Name="location_id" Type="int" Nullable="false" />
+          <Property Name="job_title" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="profession_needed" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="job_description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="job_date" Type="date" Nullable="false" />
+          <Property Name="job_time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="job_is_deleted" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="job_images">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="job_id" Type="int" Nullable="false" />
+          <Property Name="image_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="image_link" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="messaging">
+          <Key>
+            <PropertyRef Name="msg_id" />
+          </Key>
+          <Property Name="msg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender" Type="int" Nullable="false" />
+          <Property Name="receiver" Type="int" Nullable="false" />
+          <Property Name="msg_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="msg_is_starred" Type="smallint" Nullable="false" />
+          <Property Name="msg_date" Type="date" Nullable="false" />
+          <Property Name="msg_time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="msg_text" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notifications_tech">
+          <Key>
+            <PropertyRef Name="notification_id" />
+          </Key>
+          <Property Name="notification_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="t_id" Type="int" Nullable="false" />
+          <Property Name="job_id" Type="int" Nullable="false" />
+          <Property Name="notification_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="notification_is_starred" Type="smallint" Nullable="false" />
+          <Property Name="notification_date" Type="date" Nullable="false" />
+          <Property Name="notification_time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="notificaiton_flag" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_fullname" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_email" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_profile_picture" Type="varchar" MaxLength="40" />
+          <Property Name="u_flag" Type="smallint" Nullable="false" />
+          <Property Name="u_rating" Type="decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="u_number_of_raters" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_feedback">
+          <Key>
+            <PropertyRef Name="feedback_id" />
+          </Key>
+          <Property Name="feedback_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="t_id" Type="int" Nullable="false" />
+          <Property Name="feedback_text" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_images">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="image_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="image_link" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="location_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="location_is_displayed" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_phone_numbers">
+          <Key>
+            <PropertyRef Name="phone_id" />
+          </Key>
+          <Property Name="phone_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="phone_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="phone_is_dislayed" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_professions">
+          <Key>
+            <PropertyRef Name="profession_id" />
+          </Key>
+          <Property Name="profession_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="profession_is_deleted" Type="smallint" Nullable="false" />
+          <Property Name="profession" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="profession_is_displayed" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="bids_customer_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bids_customer_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bids_customer_ibfk_3">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job" Type="Self.job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="job">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_images_ibfk_1">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_images" Type="Self.job_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="job_images">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="messaging_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="messaging" Type="Self.messaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="messaging">
+              <PropertyRef Name="sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="messaging_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="messaging" Type="Self.messaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="messaging">
+              <PropertyRef Name="receiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_3">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_feedback_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_feedback" Type="Self.user_feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_feedback">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_feedback_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_feedback" Type="Self.user_feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_feedback">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_images_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_images" Type="Self.user_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_images">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_locations_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_locations" Type="Self.user_locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_locations">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_phone_numbers_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_phone_numbers" Type="Self.user_phone_numbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_phone_numbers">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_professions_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_professions" Type="Self.user_professions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_professions">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="techlebModelStoreContainer">
+          <EntitySet Name="bids_customer" EntityType="Self.bids_customer" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="job" EntityType="Self.job" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="job_images" EntityType="Self.job_images" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="messaging" EntityType="Self.messaging" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="notifications_tech" EntityType="Self.notifications_tech" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user_feedback" EntityType="Self.user_feedback" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user_images" EntityType="Self.user_images" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user_locations" EntityType="Self.user_locations" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user_phone_numbers" EntityType="Self.user_phone_numbers" Schema="techleb" store:Type="Tables" />
+          <EntitySet Name="user_professions" EntityType="Self.user_professions" Schema="techleb" store:Type="Tables" />
+          <AssociationSet Name="bids_customer_ibfk_1" Association="Self.bids_customer_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="bids_customer_ibfk_2" Association="Self.bids_customer_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="bids_customer_ibfk_3" Association="Self.bids_customer_ibfk_3">
+            <End Role="job" EntitySet="job" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="job_ibfk_1" Association="Self.job_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="job" EntitySet="job" />
+          </AssociationSet>
+          <AssociationSet Name="job_images_ibfk_1" Association="Self.job_images_ibfk_1">
+            <End Role="job" EntitySet="job" />
+            <End Role="job_images" EntitySet="job_images" />
+          </AssociationSet>
+          <AssociationSet Name="messaging_ibfk_1" Association="Self.messaging_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="messaging" EntitySet="messaging" />
+          </AssociationSet>
+          <AssociationSet Name="messaging_ibfk_2" Association="Self.messaging_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="messaging" EntitySet="messaging" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_1" Association="Self.notifications_tech_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_2" Association="Self.notifications_tech_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_3" Association="Self.notifications_tech_ibfk_3">
+            <End Role="job" EntitySet="job" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="user_feedback_ibfk_1" Association="Self.user_feedback_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_feedback" EntitySet="user_feedback" />
+          </AssociationSet>
+          <AssociationSet Name="user_feedback_ibfk_2" Association="Self.user_feedback_ibfk_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_feedback" EntitySet="user_feedback" />
+          </AssociationSet>
+          <AssociationSet Name="user_images_ibfk_1" Association="Self.user_images_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_images" EntitySet="user_images" />
+          </AssociationSet>
+          <AssociationSet Name="user_locations_ibfk_1" Association="Self.user_locations_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_locations" EntitySet="user_locations" />
+          </AssociationSet>
+          <AssociationSet Name="user_phone_numbers_ibfk_1" Association="Self.user_phone_numbers_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_phone_numbers" EntitySet="user_phone_numbers" />
+          </AssociationSet>
+          <AssociationSet Name="user_professions_ibfk_1" Association="Self.user_professions_ibfk_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_professions" EntitySet="user_professions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="techlebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bids_customer">
+          <Key>
+            <PropertyRef Name="bid_id" />
+          </Key>
+          <Property Name="bid_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="t_id" Type="Int32" Nullable="false" />
+          <Property Name="job_id" Type="Int32" Nullable="false" />
+          <Property Name="bid_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="bid_is_starred" Type="Int16" Nullable="false" />
+          <Property Name="bid_date" Type="DateTime" Nullable="false" />
+          <Property Name="bid_time" Type="Time" Nullable="false" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.bids_customer_ibfk_1" FromRole="bids_customer" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.bids_customer_ibfk_2" FromRole="bids_customer" ToRole="user" />
+          <NavigationProperty Name="job" Relationship="Self.bids_customer_ibfk_3" FromRole="bids_customer" ToRole="job" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="job_id" />
+          </Key>
+          <Property Name="job_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="phone_id" Type="Int32" Nullable="false" />
+          <Property Name="location_id" Type="Int32" Nullable="false" />
+          <Property Name="job_title" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profession_needed" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="job_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="job_date" Type="DateTime" Nullable="false" />
+          <Property Name="job_time" Type="Time" Nullable="false" />
+          <Property Name="job_is_deleted" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="bids_customer" Relationship="Self.bids_customer_ibfk_3" FromRole="job" ToRole="bids_customer" />
+          <NavigationProperty Name="user" Relationship="Self.job_ibfk_1" FromRole="job" ToRole="user" />
+          <NavigationProperty Name="job_images" Relationship="Self.job_images_ibfk_1" FromRole="job" ToRole="job_images" />
+          <NavigationProperty Name="notifications_tech" Relationship="Self.notifications_tech_ibfk_3" FromRole="job" ToRole="notifications_tech" />
+        </EntityType>
+        <EntityType Name="job_images">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="job_id" Type="Int32" Nullable="false" />
+          <Property Name="image_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="image_link" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="job" Relationship="Self.job_images_ibfk_1" FromRole="job_images" ToRole="job" />
+        </EntityType>
+        <EntityType Name="messaging">
+          <Key>
+            <PropertyRef Name="msg_id" />
+          </Key>
+          <Property Name="msg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender" Type="Int32" Nullable="false" />
+          <Property Name="receiver" Type="Int32" Nullable="false" />
+          <Property Name="msg_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="msg_is_starred" Type="Int16" Nullable="false" />
+          <Property Name="msg_date" Type="DateTime" Nullable="false" />
+          <Property Name="msg_time" Type="Time" Nullable="false" />
+          <Property Name="msg_text" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.messaging_ibfk_1" FromRole="messaging" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.messaging_ibfk_2" FromRole="messaging" ToRole="user" />
+        </EntityType>
+        <EntityType Name="notifications_tech">
+          <Key>
+            <PropertyRef Name="notification_id" />
+          </Key>
+          <Property Name="notification_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="t_id" Type="Int32" Nullable="false" />
+          <Property Name="job_id" Type="Int32" Nullable="false" />
+          <Property Name="notification_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="notification_is_starred" Type="Int16" Nullable="false" />
+          <Property Name="notification_date" Type="DateTime" Nullable="false" />
+          <Property Name="notification_time" Type="Time" Nullable="false" />
+          <Property Name="notificaiton_flag" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="job" Relationship="Self.notifications_tech_ibfk_3" FromRole="notifications_tech" ToRole="job" />
+          <NavigationProperty Name="user" Relationship="Self.notifications_tech_ibfk_1" FromRole="notifications_tech" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.notifications_tech_ibfk_2" FromRole="notifications_tech" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_fullname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_profile_picture" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="u_flag" Type="Int16" Nullable="false" />
+          <Property Name="u_rating" Type="Decimal" Nullable="false" />
+          <Property Name="u_number_of_raters" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bids_customer" Relationship="Self.bids_customer_ibfk_1" FromRole="user" ToRole="bids_customer" />
+          <NavigationProperty Name="bids_customer1" Relationship="Self.bids_customer_ibfk_2" FromRole="user" ToRole="bids_customer" />
+          <NavigationProperty Name="jobs" Relationship="Self.job_ibfk_1" FromRole="user" ToRole="job" />
+          <NavigationProperty Name="messagings" Relationship="Self.messaging_ibfk_1" FromRole="user" ToRole="messaging" />
+          <NavigationProperty Name="messagings1" Relationship="Self.messaging_ibfk_2" FromRole="user" ToRole="messaging" />
+          <NavigationProperty Name="notifications_tech" Relationship="Self.notifications_tech_ibfk_1" FromRole="user" ToRole="notifications_tech" />
+          <NavigationProperty Name="notifications_tech1" Relationship="Self.notifications_tech_ibfk_2" FromRole="user" ToRole="notifications_tech" />
+          <NavigationProperty Name="user_feedback" Relationship="Self.user_feedback_ibfk_1" FromRole="user" ToRole="user_feedback" />
+          <NavigationProperty Name="user_feedback1" Relationship="Self.user_feedback_ibfk_2" FromRole="user" ToRole="user_feedback" />
+          <NavigationProperty Name="user_images" Relationship="Self.user_images_ibfk_1" FromRole="user" ToRole="user_images" />
+          <NavigationProperty Name="user_locations" Relationship="Self.user_locations_ibfk_1" FromRole="user" ToRole="user_locations" />
+          <NavigationProperty Name="user_phone_numbers" Relationship="Self.user_phone_numbers_ibfk_1" FromRole="user" ToRole="user_phone_numbers" />
+          <NavigationProperty Name="user_professions" Relationship="Self.user_professions_ibfk_1" FromRole="user" ToRole="user_professions" />
+        </EntityType>
+        <EntityType Name="user_feedback">
+          <Key>
+            <PropertyRef Name="feedback_id" />
+          </Key>
+          <Property Name="feedback_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="t_id" Type="Int32" Nullable="false" />
+          <Property Name="feedback_text" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_feedback_ibfk_1" FromRole="user_feedback" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.user_feedback_ibfk_2" FromRole="user_feedback" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_images">
+          <Key>
+            <PropertyRef Name="image_id" />
+          </Key>
+          <Property Name="image_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="image_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="image_link" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_images_ibfk_1" FromRole="user_images" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="location_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="location_is_displayed" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_locations_ibfk_1" FromRole="user_locations" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_phone_numbers">
+          <Key>
+            <PropertyRef Name="phone_id" />
+          </Key>
+          <Property Name="phone_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="phone_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_is_dislayed" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_phone_numbers_ibfk_1" FromRole="user_phone_numbers" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_professions">
+          <Key>
+            <PropertyRef Name="profession_id" />
+          </Key>
+          <Property Name="profession_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="profession_is_deleted" Type="Int16" Nullable="false" />
+          <Property Name="profession" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profession_is_displayed" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_professions_ibfk_1" FromRole="user_professions" ToRole="user" />
+        </EntityType>
+        <Association Name="bids_customer_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bids_customer_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bids_customer_ibfk_3">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bids_customer" Type="Self.bids_customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="bids_customer">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job" Type="Self.job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="job">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_images_ibfk_1">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_images" Type="Self.job_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="job_images">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_3">
+          <End Role="job" Type="Self.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="messaging_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="messaging" Type="Self.messaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="messaging">
+              <PropertyRef Name="sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="messaging_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="messaging" Type="Self.messaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="messaging">
+              <PropertyRef Name="receiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="notifications_tech_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="notifications_tech" Type="Self.notifications_tech" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="notifications_tech">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_feedback_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_feedback" Type="Self.user_feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_feedback">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_feedback_ibfk_2">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_feedback" Type="Self.user_feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_feedback">
+              <PropertyRef Name="t_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_images_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_images" Type="Self.user_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_images">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_locations_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_locations" Type="Self.user_locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_locations">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_phone_numbers_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_phone_numbers" Type="Self.user_phone_numbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_phone_numbers">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_professions_ibfk_1">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_professions" Type="Self.user_professions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="user_professions">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="techlebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bids_customer" EntityType="Self.bids_customer" />
+          <EntitySet Name="jobs" EntityType="Self.job" />
+          <EntitySet Name="job_images" EntityType="Self.job_images" />
+          <EntitySet Name="messagings" EntityType="Self.messaging" />
+          <EntitySet Name="notifications_tech" EntityType="Self.notifications_tech" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="user_feedback" EntityType="Self.user_feedback" />
+          <EntitySet Name="user_images" EntityType="Self.user_images" />
+          <EntitySet Name="user_locations" EntityType="Self.user_locations" />
+          <EntitySet Name="user_phone_numbers" EntityType="Self.user_phone_numbers" />
+          <EntitySet Name="user_professions" EntityType="Self.user_professions" />
+          <AssociationSet Name="bids_customer_ibfk_1" Association="Self.bids_customer_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="bids_customer_ibfk_2" Association="Self.bids_customer_ibfk_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="bids_customer_ibfk_3" Association="Self.bids_customer_ibfk_3">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="bids_customer" EntitySet="bids_customer" />
+          </AssociationSet>
+          <AssociationSet Name="job_ibfk_1" Association="Self.job_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="job" EntitySet="jobs" />
+          </AssociationSet>
+          <AssociationSet Name="job_images_ibfk_1" Association="Self.job_images_ibfk_1">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="job_images" EntitySet="job_images" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_3" Association="Self.notifications_tech_ibfk_3">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="messaging_ibfk_1" Association="Self.messaging_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="messaging" EntitySet="messagings" />
+          </AssociationSet>
+          <AssociationSet Name="messaging_ibfk_2" Association="Self.messaging_ibfk_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="messaging" EntitySet="messagings" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_1" Association="Self.notifications_tech_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="notifications_tech_ibfk_2" Association="Self.notifications_tech_ibfk_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="notifications_tech" EntitySet="notifications_tech" />
+          </AssociationSet>
+          <AssociationSet Name="user_feedback_ibfk_1" Association="Self.user_feedback_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_feedback" EntitySet="user_feedback" />
+          </AssociationSet>
+          <AssociationSet Name="user_feedback_ibfk_2" Association="Self.user_feedback_ibfk_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_feedback" EntitySet="user_feedback" />
+          </AssociationSet>
+          <AssociationSet Name="user_images_ibfk_1" Association="Self.user_images_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_images" EntitySet="user_images" />
+          </AssociationSet>
+          <AssociationSet Name="user_locations_ibfk_1" Association="Self.user_locations_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_locations" EntitySet="user_locations" />
+          </AssociationSet>
+          <AssociationSet Name="user_phone_numbers_ibfk_1" Association="Self.user_phone_numbers_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_phone_numbers" EntitySet="user_phone_numbers" />
+          </AssociationSet>
+          <AssociationSet Name="user_professions_ibfk_1" Association="Self.user_professions_ibfk_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_professions" EntitySet="user_professions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="techlebModelStoreContainer" CdmEntityContainer="techlebEntities">
+          <EntitySetMapping Name="bids_customer">
+            <EntityTypeMapping TypeName="techlebModel.bids_customer">
+              <MappingFragment StoreEntitySet="bids_customer">
+                <ScalarProperty Name="bid_id" ColumnName="bid_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
+                <ScalarProperty Name="bid_is_deleted" ColumnName="bid_is_deleted" />
+                <ScalarProperty Name="bid_is_starred" ColumnName="bid_is_starred" />
+                <ScalarProperty Name="bid_date" ColumnName="bid_date" />
+                <ScalarProperty Name="bid_time" ColumnName="bid_time" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobs">
+            <EntityTypeMapping TypeName="techlebModel.job">
+              <MappingFragment StoreEntitySet="job">
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="phone_id" ColumnName="phone_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="job_title" ColumnName="job_title" />
+                <ScalarProperty Name="profession_needed" ColumnName="profession_needed" />
+                <ScalarProperty Name="job_description" ColumnName="job_description" />
+                <ScalarProperty Name="job_date" ColumnName="job_date" />
+                <ScalarProperty Name="job_time" ColumnName="job_time" />
+                <ScalarProperty Name="job_is_deleted" ColumnName="job_is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_images">
+            <EntityTypeMapping TypeName="techlebModel.job_images">
+              <MappingFragment StoreEntitySet="job_images">
+                <ScalarProperty Name="image_id" ColumnName="image_id" />
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
+                <ScalarProperty Name="image_is_deleted" ColumnName="image_is_deleted" />
+                <ScalarProperty Name="image_link" ColumnName="image_link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messagings">
+            <EntityTypeMapping TypeName="techlebModel.messaging">
+              <MappingFragment StoreEntitySet="messaging">
+                <ScalarProperty Name="msg_id" ColumnName="msg_id" />
+                <ScalarProperty Name="sender" ColumnName="sender" />
+                <ScalarProperty Name="receiver" ColumnName="receiver" />
+                <ScalarProperty Name="msg_is_deleted" ColumnName="msg_is_deleted" />
+                <ScalarProperty Name="msg_is_starred" ColumnName="msg_is_starred" />
+                <ScalarProperty Name="msg_date" ColumnName="msg_date" />
+                <ScalarProperty Name="msg_time" ColumnName="msg_time" />
+                <ScalarProperty Name="msg_text" ColumnName="msg_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications_tech">
+            <EntityTypeMapping TypeName="techlebModel.notifications_tech">
+              <MappingFragment StoreEntitySet="notifications_tech">
+                <ScalarProperty Name="notification_id" ColumnName="notification_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
+                <ScalarProperty Name="notification_is_deleted" ColumnName="notification_is_deleted" />
+                <ScalarProperty Name="notification_is_starred" ColumnName="notification_is_starred" />
+                <ScalarProperty Name="notification_date" ColumnName="notification_date" />
+                <ScalarProperty Name="notification_time" ColumnName="notification_time" />
+                <ScalarProperty Name="notificaiton_flag" ColumnName="notificaiton_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="techlebModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_username" ColumnName="u_username" />
+                <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="u_fullname" ColumnName="u_fullname" />
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
+                <ScalarProperty Name="u_profile_picture" ColumnName="u_profile_picture" />
+                <ScalarProperty Name="u_flag" ColumnName="u_flag" />
+                <ScalarProperty Name="u_rating" ColumnName="u_rating" />
+                <ScalarProperty Name="u_number_of_raters" ColumnName="u_number_of_raters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_feedback">
+            <EntityTypeMapping TypeName="techlebModel.user_feedback">
+              <MappingFragment StoreEntitySet="user_feedback">
+                <ScalarProperty Name="feedback_id" ColumnName="feedback_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="feedback_text" ColumnName="feedback_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_images">
+            <EntityTypeMapping TypeName="techlebModel.user_images">
+              <MappingFragment StoreEntitySet="user_images">
+                <ScalarProperty Name="image_id" ColumnName="image_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="image_is_deleted" ColumnName="image_is_deleted" />
+                <ScalarProperty Name="image_link" ColumnName="image_link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_locations">
+            <EntityTypeMapping TypeName="techlebModel.user_locations">
+              <MappingFragment StoreEntitySet="user_locations">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="location_is_deleted" ColumnName="location_is_deleted" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="location_is_displayed" ColumnName="location_is_displayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_phone_numbers">
+            <EntityTypeMapping TypeName="techlebModel.user_phone_numbers">
+              <MappingFragment StoreEntitySet="user_phone_numbers">
+                <ScalarProperty Name="phone_id" ColumnName="phone_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="phone_is_deleted" ColumnName="phone_is_deleted" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="phone_is_dislayed" ColumnName="phone_is_dislayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_professions">
+            <EntityTypeMapping TypeName="techlebModel.user_professions">
+              <MappingFragment StoreEntitySet="user_professions">
+                <ScalarProperty Name="profession_id" ColumnName="profession_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="profession_is_deleted" ColumnName="profession_is_deleted" />
+                <ScalarProperty Name="profession" ColumnName="profession" />
+                <ScalarProperty Name="profession_is_displayed" ColumnName="profession_is_displayed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

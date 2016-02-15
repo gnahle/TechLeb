@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+    <table id="Orders"></table>
+</body>
+</html>
+<script>
+
+    $.ajax({
+        url: "http://localhost:41785/api/Orders/1/AssignOrder",
+        type: "Post",
+        data: {
+            Assignee: " Ghassan"
+        },
+        success:function (result) {
+            alert(JSON.stringify(result));
+        }
+    })
+
+</script>
